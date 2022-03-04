@@ -1,3 +1,4 @@
+require('dotenv/config')
 const express = require('express')
 const puppeteer = require('puppeteer')
 var cors = require('cors')
@@ -7,7 +8,7 @@ app.use(express.json())
 app.use(cors())
 
 
-app.listen(3000, () => {
+app.listen(process.env.APP_PORT, () => {
     const date = new Date().toLocaleString("pt-BR", { timeZone: 'America/Sao_Paulo' })
 
     console.log(`Servidor online 🚀 ${date}`)
