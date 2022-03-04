@@ -17,7 +17,7 @@ app.listen(process.env.PORT, () => {
 app.post('/news/:pages', async (response, request) => {
     const { pages } = response.params
 
-    const browser = await puppeteer.launch();
+    const browser = await puppeteer.launch({ args: ['--no-sandbox', '--disable-setuid-sandbox'] });
     const page = await browser.newPage();
     await page.goto(`https://www.tecmundo.com.br/api/v1/materia/novidades/?page=${pages}&top=25`);
 
@@ -36,7 +36,7 @@ app.post('/news/:pages', async (response, request) => {
 app.post('/curiosity/:amount', async (response, request) => {
     const { amount } = response.params
 
-    const browser = await puppeteer.launch();
+    const browser = await puppeteer.launch({ args: ['--no-sandbox', '--disable-setuid-sandbox'] });
     const page = await browser.newPage();
     await page.goto(`https://www.tecmundo.com.br/api/v1/externo/megacurioso/semana/${amount}`);
 
