@@ -17,7 +17,7 @@ I'm currently exporting data from the TecMundo and MegaCurioso sites and of cour
 	
 ### Method Post
 	 /news/:pages
-	 /curiosidades/:length
+	 /curiosity/:length
 
  
 
