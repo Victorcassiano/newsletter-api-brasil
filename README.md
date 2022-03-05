@@ -15,9 +15,11 @@ I'm currently exporting data from the TecMundo and MegaCurioso sites and of cour
 ### Base URL
 	https://newsletterapi22.herokuapp.com/
 	
-### Method Post
-	 /news/:pages
-	 /curiosity/:length
+### News
+	use /news/:pages to request news where you can receive per page
+	
+### Curiosity
+	use /curiosity/:amount to request news where you enter the amount of curiosity you want to receive
 
  
 
