@@ -1,6 +1,6 @@
 ﻿# Bem Vindos
 
-Olá devs, me chamo Victor Cassiano 😄
+Olá devs, me chamo Victor Cassiano 😄 <br />
 Criei essa API para poder criar uma newsletter em meu portifólio e deixarei aberta para qualquer pessoa poder usar.
 Atualmente estou fazendo exportação de dados do site TecMundo e do MegaCurioso e é claro que deixarei aberto para vocês adicionarem mais opções de noticias e fazer ajustes 😁
 
