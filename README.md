@@ -12,7 +12,9 @@ I'm currently exporting data from the TecMundo and MegaCurioso sites and of cour
 
 
 # Routes
-
+### Base URL
+	https://newsletterapi22.herokuapp.com/
+	
 ### Method Post
 	 /news/:pages
 	 /curiosidades/:length
