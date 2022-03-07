@@ -8,6 +8,8 @@ app.use(express.json())
 app.use(cors())
 
 
+console.log(process.env.PORT)
+
 app.listen(process.env.PORT, () => {
     const date = new Date().toLocaleString("pt-BR", { timeZone: 'America/Sao_Paulo' })
 
