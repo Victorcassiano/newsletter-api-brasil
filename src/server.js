@@ -8,8 +8,6 @@ app.use(express.json())
 app.use(cors())
 
 
-console.log(process.env.PORT)
-
 app.listen(process.env.PORT, () => {
     const date = new Date().toLocaleString("pt-BR", { timeZone: 'America/Sao_Paulo' })
 
@@ -19,7 +17,7 @@ app.listen(process.env.PORT, () => {
 app.post('/news/:pages', async (response, request) => {
     const { pages } = response.params
 
-    const browser = await puppeteer.launch({ args: ['--no-sandbox', '--disable-setuid-sandbox'] });
+    const browser = await puppeteer.launch({ args: ['--no-sandbox', '--disable-setuid-sandbox'], headless: true });
     const page = await browser.newPage();
     await page.goto(`https://www.tecmundo.com.br/api/v1/materia/novidades/?page=${pages}&top=25`);
 
@@ -34,23 +32,3 @@ app.post('/news/:pages', async (response, request) => {
 
     return request.json(json.dados)
 })
-
-app.post('/curiosity/:amount', async (response, request) => {
-    const { amount } = response.params
-
-    const browser = await puppeteer.launch({ args: ['--no-sandbox', '--disable-setuid-sandbox'] });
-    const page = await browser.newPage();
-    await page.goto(`https://www.tecmundo.com.br/api/v1/externo/megacurioso/semana/${amount}`);
-
-    const json = await page.evaluate(() => {
-        const json = document.querySelector('body pre').innerHTML
-
-        return JSON.parse(json);
-    })
-
-
-    await browser.close();
-
-    return request.json(json.dados)
-})
-
