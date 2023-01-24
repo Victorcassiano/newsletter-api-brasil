@@ -16,7 +16,7 @@ I'm currently exporting data from the TecMundo and MegaCurioso sites and, of cou
 	https://newsletterapi22.herokuapp.com/
 	
 ### News
-	use news?page=1 to request news where you can receive per page
+	use /news?page=1 to request news where you can receive per page
 	
 ### Most Read
 	use /mostread?type=&page=1 to request the most read news
