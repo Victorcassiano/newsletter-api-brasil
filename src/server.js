@@ -1,12 +1,12 @@
 require('dotenv/config')
 const express = require('express')
-const puppeteer = require('puppeteer')
 var cors = require('cors')
+const tecmundoMostRead = require('./services/tecmundoMostRead');
+const tecmundoLatestNews = require('./services/tecmundoLatestNews');
 const app = express();
 
 app.use(express.json())
 app.use(cors())
-
 
 app.listen(process.env.PORT, () => {
     const date = new Date().toLocaleString("pt-BR", { timeZone: 'America/Sao_Paulo' })
@@ -14,21 +14,20 @@ app.listen(process.env.PORT, () => {
     console.log(`Servidor online 🚀 ${date}`)
 })
 
-app.post('/news/:pages', async (response, request) => {
-    const { pages } = response.params
+app.get('/news', async (response, request) => {
+    const { page } = response.query
 
-    const browser = await puppeteer.launch({ args: ['--no-sandbox', '--disable-setuid-sandbox'], headless: true });
-    const page = await browser.newPage();
-    await page.goto(`https://www.tecmundo.com.br/api/v1/materia/novidades/?page=${pages}&top=25`);
+    const data = await tecmundoLatestNews(page)
 
-    const json = await page.evaluate(() => {
-        const json = document.querySelector('body pre').innerHTML
+    request.send({ data })
+})
 
-        return JSON.parse(json);
-    })
+app.get('/mostread', async (response, request) => {
+    const { page, type } = response.query
 
+    // Tipos: null, semana, mes, sempre
 
-    await browser.close();
+    const data = await tecmundoMostRead(page, type)
 
-    return request.json(json.dados)
+    request.send({ data })
 })
