@@ -1,8 +1,15 @@
 require('dotenv/config')
 const express = require('express')
 var cors = require('cors')
-const tecmundoMostRead = require('./services/tecmundoMostRead');
-const tecmundoLatestNews = require('./services/tecmundoLatestNews');
+const main = require('./services/main');
+const software = require('./services/software');
+const security = require('./services/security');
+const internet = require('./services/internet');
+const mobileDevices = require('./services/mobile-devices');
+const product = require('./services/product');
+const science = require('./services/science');
+const games = require('./services/games');
+const series = require('./services/series');
 const app = express();
 
 app.use(express.json())
@@ -14,20 +21,84 @@ app.listen(process.env.PORT_SERVER_NEWSLETTER_API, () => {
     console.log(`Servidor online 🚀 ${date}`)
 })
 
-app.get('/news', async (response, request) => {
+app.get('/main/news', async (response, request) => {
     const { page } = response.query
 
-    const data = await tecmundoLatestNews(page)
+    const data = await main.latestNews(page)
 
     request.send({ data })
 })
 
-app.get('/mostread', async (response, request) => {
-    const { page, type } = response.query
+app.get('/main/mostread', async (response, request) => {
+    const { page, old, type } = response.query
 
-    // Tipos: null, semana, mes, sempre
+    // Old: null, semana, mes, sempre
 
-    const data = await tecmundoMostRead(page, type)
+    const data = await main.mostRead(page, old)
+
+    request.send({ data })
+})
+
+app.get('/software/news', async (response, request) => {
+    const { page } = response.query
+
+    const data = await software.latestNews(page)
+
+    request.send({ data })
+})
+
+app.get('/seguranca/news', async (response, request) => {
+    const { page } = response.query
+
+    const data = await security.latestNews(page)
+
+    request.send({ data })
+})
+
+app.get('/internet/news', async (response, request) => {
+    const { page } = response.query
+
+    const data = await internet.latestNews(page)
+
+    request.send({ data })
+})
+
+app.get('/mobile-devices/news', async (response, request) => {
+    const { page } = response.query
+
+    const data = await mobileDevices.latestNews(page)
+
+    request.send({ data })
+})
+
+app.get('/product/news', async (response, request) => {
+    const { page } = response.query
+
+    const data = await product.latestNews(page)
+
+    request.send({ data })
+})
+
+app.get('/science/news', async (response, request) => {
+    const { page } = response.query
+
+    const data = await science.latestNews(page)
+
+    request.send({ data })
+})
+
+app.get('/games/news', async (response, request) => {
+    const { page } = response.query
+
+    const data = await games.latestNews(page)
+
+    request.send({ data })
+})
+
+app.get('/series/news', async (response, request) => {
+    const { page } = response.query
+
+    const data = await series.latestNews(page)
 
     request.send({ data })
 })

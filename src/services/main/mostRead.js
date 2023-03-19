@@ -1,8 +1,8 @@
 const cheerio = require('cheerio')
 const axios = require('axios')
 
-const tecmundoMostRead = async (page, type) => {
-    const url = `https://www.tecmundo.com.br/mais-lidas?tipo=${type}&page=${page}`
+const tecmundoMostRead = async (page, old) => {
+    const url = `https://www.tecmundo.com.br/mais-lidas?tipo=${old}&page=${page}`
     const response = await axios.get(url)
     const data = []
     const img = []
