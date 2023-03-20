@@ -2,7 +2,7 @@ const cheerio = require('cheerio')
 const axios = require('axios')
 
 const tecmundoLatestNews = async (page) => {
-    const url = page ? `https://www.tecmundo.com.br/mobile-devices?page=${page}` : 'https://www.tecmundo.com.br/mobile-devices'
+    const url = page ? `https://www.tecmundo.com.br/dispositivos-moveis?page=${page}` : 'https://www.tecmundo.com.br/dispositivos-moveis'
     const response = await axios.get(url)
     const data = []
     const img = []
