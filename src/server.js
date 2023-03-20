@@ -47,7 +47,7 @@ app.get('/software/news', async (response, request) => {
     request.send({ data })
 })
 
-app.get('/seguranca/news', async (response, request) => {
+app.get('/security/news', async (response, request) => {
     const { page } = response.query
 
     const data = await security.latestNews(page)
